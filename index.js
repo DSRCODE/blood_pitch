@@ -22,7 +22,7 @@ function loadSlide(slideNum) {
     // Save slide number to persist on refresh
     localStorage.setItem("currentSlide", currentSlide);
 
-    frame.src = `sl${slideNum}.html`;
+        frame.src = `/sl${slideNum}.html`;
     updateUI();
     frame.style.opacity = 1;
   }, 150);
