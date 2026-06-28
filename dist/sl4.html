@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Crisis Statistics - VitalGrid</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Inter", sans-serif;
+        background-color: #f8fafc;
+        overflow: hidden;
+      }
+      .slide-container {
+        width: 100%;
+        height: 720px;
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        position: relative;
+      }
+      .header {
+        padding: 40px 60px 20px 60px;
+      }
+      .section-tag {
+        font-size: 0.85rem;
+        color: #ef4444; /* Red 500 */
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .main-title {
+        font-family: "Montserrat", sans-serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #0f172a;
+        line-height: 1.1;
+      }
+      .content-wrapper {
+        flex: 1;
+        display: flex;
+        padding: 20px 60px 50px 60px;
+        gap: 40px;
+      }
+      .stats-grid {
+        flex: 3;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: 25px;
+      }
+      .stat-card {
+        background-color: #f8fafc;
+        border-radius: 16px;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        border: 1px solid #e2e8f0;
+        position: relative;
+        overflow: hidden;
+      }
+      .stat-card.wide {
+        grid-column: span 2;
+        flex-direction: row;
+        align-items: center;
+      }
+      .stat-number {
+        font-family: "Montserrat", sans-serif;
+        font-size: 3.5rem;
+        font-weight: 800;
+        color: #0f172a;
+        line-height: 1;
+        margin-bottom: 5px;
+      }
+      .stat-label {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #64748b;
+      }
+      .stat-icon {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+      }
+      .urgency-panel {
+        flex: 2;
+        background-color: #1e293b; /* Slate 800 */
+        border-radius: 20px;
+        padding: 40px;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      }
+      .urgency-panel::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 6px;
+        background-color: #ef4444; /* Red 500 */
+      }
+      .alert-box {
+        background-color: rgba(239, 68, 68, 0.1);
+        border: 1px solid rgba(239, 68, 68, 0.3);
+        border-radius: 12px;
+        padding: 20px;
+        margin-top: 20px;
+      }
+      .time-equals-life {
+        font-family: "Montserrat", sans-serif;
+        font-size: 2rem;
+        font-weight: 700;
+        text-align: center;
+        color: #ffffff;
+        margin-top: auto;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .highlight-red {
+        color: #ef4444;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slide-container">
+      <!-- Header -->
+      <div class="header">
+        <div class="section-tag">
+          <i class="fa-solid fa-chart-pie"></i>
+          <p>Market Landscape</p>
+        </div>
+        <h1 class="main-title">The Crisis by the Numbers</h1>
+      </div>
+      <!-- Content -->
+      <div class="content-wrapper">
+        <!-- Left Side: Infrastructure Stats -->
+        <div class="stats-grid">
+          <!-- Stat 1 -->
+          <div class="stat-card border-t-4 border-blue-500">
+            <div class="text-blue-500 stat-icon">
+              <i class="fa-solid fa-hospital"></i>
+            </div>
+            <div>
+              <h2 class="stat-number">70,000+</h2>
+              <p class="stat-label">Hospitals in India</p>
+            </div>
+          </div>
+          <!-- Stat 2 -->
+          <div class="stat-card border-t-4 border-red-500">
+            <div class="text-red-500 stat-icon">
+              <i class="fa-solid fa-warehouse"></i>
+            </div>
+            <div>
+              <h2 class="stat-number">3,000+</h2>
+              <p class="stat-label">Blood Banks</p>
+            </div>
+          </div>
+          <!-- Stat 3 (Wide) -->
+          <div class="stat-card wide border-t-4 border-slate-500">
+            <div class="flex-1">
+              <div class="text-slate-600 stat-icon">
+                <i class="fa-solid fa-bed-pulse"></i>
+              </div>
+              <h2 class="stat-number">Millions</h2>
+              <p class="stat-label">Emergency Cases Annually</p>
+            </div>
+            <div class="w-px h-24 bg-gray-200 mx-6"></div>
+            <div class="flex-1">
+              <p class="text-sm text-gray-500 font-medium mb-2">CRITICAL GAP</p>
+              <p class="text-gray-700 font-semibold leading-snug">
+                Despite massive infrastructure, there is
+                <span class="text-red-600"
+                  >no centralized real-time system</span
+                >
+                connecting these nodes.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Right Side: The Urgency -->
+        <div class="urgency-panel">
+          <div>
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
+              <p
+                class="text-red-400 font-bold uppercase tracking-wider text-sm"
+              >
+                Critical Failure Point
+              </p>
+            </div>
+            <h3 class="text-2xl font-bold font-montserrat mb-4">
+              The "Visibility Gap"
+            </h3>
+            <p class="text-slate-300 leading-relaxed mb-6">
+              Doctors and families face frequent blood &amp; oxygen shortages,
+              often unaware that resources exist just a few kilometers away.
+            </p>
+            <div class="alert-box">
+              <div class="flex items-center gap-3 mb-2">
+                <i class="fa-solid fa-clock text-red-500 text-xl"></i>
+                <p class="text-white font-bold text-lg">20–30 Minutes</p>
+              </div>
+              <p class="text-sm text-slate-300">
+                Average delay in critical moments due to manual search and phone
+                calls.
+              </p>
+            </div>
+          </div>
+          <div class="time-equals-life">
+            <p>Time <span class="highlight-red">=</span> Life</p>
+            <p class="text-sm font-normal text-slate-400 mt-2 font-inter">
+              Delays are preventable.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

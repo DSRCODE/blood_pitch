@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Competitive Advantage - VitalGrid</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Inter", sans-serif;
+        background-color: #f8fafc;
+        overflow: auto;
+      }
+      .slide-container {
+        width: 100%;
+        height: 720px;
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        /* overflow: hidden; */
+        position: relative;
+      }
+
+      /* Background Elements */
+      .bg-ring {
+        position: absolute;
+        border-radius: 50%;
+        border: 1px solid #e2e8f0;
+        z-index: 0;
+      }
+      .ring-1 {
+        width: 800px;
+        height: 800px;
+        top: -100px;
+        left: -200px;
+        opacity: 0.5;
+      }
+      .ring-2 {
+        width: 1000px;
+        height: 1000px;
+        top: -200px;
+        left: -300px;
+        opacity: 0.3;
+      }
+      .ring-3 {
+        width: 1200px;
+        height: 1200px;
+        top: -300px;
+        left: -400px;
+        opacity: 0.1;
+      }
+
+      /* Header */
+      .header {
+        padding: 40px 60px 20px 60px;
+        z-index: 10;
+      }
+      .section-tag {
+        font-size: 0.85rem;
+        color: #b91c1c; /* Red 700 */
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 10px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background-color: #fef2f2;
+        padding: 6px 16px;
+        border-radius: 20px;
+        border: 1px solid #fecaca;
+      }
+      .main-title {
+        font-family: "Montserrat", sans-serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #0f172a;
+        line-height: 1.1;
+      }
+      .subtitle {
+        font-size: 1.1rem;
+        color: #64748b;
+        margin-top: 8px;
+      }
+
+      /* Content Layout */
+      .content-grid {
+        flex: 1;
+        padding: 20px 60px 50px 60px;
+        display: grid;
+        grid-template-columns: 380px 1fr;
+        gap: 30px;
+        z-index: 10;
+      }
+
+      /* Primary Moat (Left Column) */
+      .primary-moat-card {
+        background-color: #1e293b; /* Slate 800 */
+        border-radius: 24px;
+        padding: 30px;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+          0 8px 10px -6px rgba(0, 0, 0, 0.1);
+      }
+
+      .primary-icon-box {
+        width: 70px;
+        height: 70px;
+        background-color: #3b82f6;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        margin-bottom: 24px;
+        box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3);
+      }
+
+      .primary-title {
+        font-family: "Montserrat", sans-serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 16px;
+        line-height: 1.2;
+      }
+
+      .flywheel-diagram {
+        margin: 30px 0;
+        position: relative;
+        height: 160px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .cycle-node {
+        position: absolute;
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      .node-1 {
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .node-2 {
+        bottom: 20px;
+        left: 0;
+      }
+      .node-3 {
+        bottom: 20px;
+        right: 0;
+      }
+
+      .cycle-arrows {
+        width: 120px;
+        height: 120px;
+        border: 2px dashed rgba(59, 130, 246, 0.5);
+        border-radius: 50%;
+        animation: spin 20s linear infinite;
+      }
+
+      /* Secondary Moats (Right Grid) */
+      .secondary-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .moat-card {
+        background-color: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 20px;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .moat-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        border-color: #cbd5e1;
+      }
+
+      .card-header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 16px;
+      }
+
+      .icon-circle {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+      }
+
+      /* Theme Colors */
+      .theme-tech .icon-circle {
+        background-color: #e0f2fe;
+        color: #0284c7;
+      }
+      .theme-tech:hover {
+        border-bottom: 4px solid #0284c7;
+      }
+
+      .theme-data .icon-circle {
+        background-color: #f3e8ff;
+        color: #7c3aed;
+      }
+      .theme-data:hover {
+        border-bottom: 4px solid #7c3aed;
+      }
+
+      .theme-partner .icon-circle {
+        background-color: #ecfdf5;
+        color: #059669;
+      }
+      .theme-partner:hover {
+        border-bottom: 4px solid #059669;
+      }
+
+      .theme-lock .icon-circle {
+        background-color: #fff1f2;
+        color: #e11d48;
+      }
+      .theme-lock:hover {
+        border-bottom: 4px solid #e11d48;
+      }
+
+      .card-title {
+        font-family: "Montserrat", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #1e293b;
+      }
+
+      .card-desc {
+        font-size: 0.9rem;
+        color: #64748b;
+        line-height: 1.5;
+        flex: 1;
+      }
+
+      .defense-tag {
+        align-self: flex-start;
+        margin-top: 16px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        padding: 4px 10px;
+        border-radius: 4px;
+        background-color: #f1f5f9;
+        color: #64748b;
+      }
+
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slide-container">
+      <!-- Background Rings -->
+      <div class="bg-ring ring-1"></div>
+      <div class="bg-ring ring-2"></div>
+      <div class="bg-ring ring-3"></div>
+      <!-- Header -->
+      <div class="header">
+        <div class="section-tag">
+          <i class="fa-solid fa-shield-halved"></i>
+          <span>Defensibility</span>
+        </div>
+        <h1 class="main-title">Competitive Advantage</h1>
+        <p class="subtitle">
+          A multi-layered defense strategy creating high barriers to entry.
+        </p>
+      </div>
+      <!-- Main Content -->
+      <div class="content-grid">
+        <!-- Left Column: The Flywheel (Primary Moat) -->
+        <div class="primary-moat-card">
+          <div class="primary-icon-box">
+            <i class="fa-solid fa-circle-nodes"></i>
+          </div>
+          <h2 class="primary-title">Network<br />Effects</h2>
+          <p class="text-blue-100 text-sm leading-relaxed mb-4">
+            Our value proposition grows exponentially with every new node added
+            to the grid.
+          </p>
+          <!-- Simple Cycle Visualization -->
+          <div class="flywheel-diagram">
+            <div class="cycle-arrows"></div>
+            <div class="cycle-node node-1">More Hospitals</div>
+            <div class="cycle-node node-2">Faster Matches</div>
+            <div class="cycle-node node-3">More Data</div>
+            <div class="absolute text-blue-400 text-2xl">
+              <i class="fa-solid fa-arrows-rotate"></i>
+            </div>
+          </div>
+          <div class="mt-auto pt-6 border-t border-slate-700">
+            <p
+              class="text-xs uppercase tracking-wider text-slate-400 font-bold mb-1"
+            >
+              Result
+            </p>
+            <p class="font-bold text-lg text-white">Winner-Take-All Dynamics</p>
+          </div>
+        </div>
+        <!-- Right Column: Supporting Moats Grid -->
+        <div class="secondary-grid">
+          <!-- Moat 1: Tech -->
+          <div class="moat-card theme-tech">
+            <div class="card-header">
+              <div class="icon-circle">
+                <i class="fa-solid fa-bolt"></i>
+              </div>
+              <h3 class="card-title">Real-time Architecture</h3>
+            </div>
+            <p class="card-desc">
+              Purpose-built for
+              <span class="font-bold text-slate-700">emergency latency</span>
+              (&lt; 50ms). Difficult for generic ERPs or manual aggregators to
+              replicate.
+            </p>
+            <span class="defense-tag">Technology Barrier</span>
+          </div>
+          <!-- Moat 2: Data -->
+          <div class="moat-card theme-data">
+            <div class="card-header">
+              <div class="icon-circle">
+                <i class="fa-solid fa-brain"></i>
+              </div>
+              <h3 class="card-title">Data Intelligence</h3>
+            </div>
+            <p class="card-desc">
+              Proprietary demand data enables
+              <span class="font-bold text-slate-700"
+                >predictive supply management</span
+              >, moving from reactive to proactive care.
+            </p>
+            <span class="defense-tag">IP Barrier</span>
+          </div>
+          <!-- Moat 3: Partnerships -->
+          <div class="moat-card theme-partner">
+            <div class="card-header">
+              <div class="icon-circle">
+                <i class="fa-solid fa-handshake"></i>
+              </div>
+              <h3 class="card-title">Early Partnerships</h3>
+            </div>
+            <p class="card-desc">
+              First-mover advantage with key hospital chains and state
+              governments creates
+              <span class="font-bold text-slate-700">exclusive corridors</span>.
+            </p>
+            <span class="defense-tag">Market Barrier</span>
+          </div>
+          <!-- Moat 4: Lock-in -->
+          <div class="moat-card theme-lock">
+            <div class="card-header">
+              <div class="icon-circle">
+                <i class="fa-solid fa-lock"></i>
+              </div>
+              <h3 class="card-title">High Switching Costs</h3>
+            </div>
+            <p class="card-desc">
+              Deep API integration into hospital HMIS workflows makes
+              displacement
+              <span class="font-bold text-slate-700">operationally painful</span
+              >.
+            </p>
+            <span class="defense-tag">Retention Barrier</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

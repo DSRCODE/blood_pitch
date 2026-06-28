@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Go-To-Market Strategy - VitalGrid</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Inter", sans-serif;
+        background-color: #f8fafc;
+        overflow: auto;
+      }
+      .slide-container {
+        width: 100%;
+        height: 720px;
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        /* overflow: hidden; */
+        position: relative;
+      }
+
+      /* Background Decoration */
+      .bg-pattern {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 40%;
+        height: 100%;
+        background-color: #f8fafc;
+        border-left: 1px solid #e2e8f0;
+        z-index: 0;
+      }
+
+      /* Header */
+      .header {
+        padding: 40px 60px 20px 60px;
+        z-index: 10;
+      }
+      .section-tag {
+        font-size: 0.85rem;
+        color: #059669; /* Emerald 600 */
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 10px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background-color: #ecfdf5;
+        padding: 6px 16px;
+        border-radius: 20px;
+        border: 1px solid #a7f3d0;
+      }
+      .main-title {
+        font-family: "Montserrat", sans-serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #0f172a;
+        line-height: 1.1;
+      }
+      .subtitle {
+        font-size: 1.1rem;
+        color: #64748b;
+        margin-top: 8px;
+        max-width: 800px;
+      }
+
+      /* Content Layout */
+      .content-grid {
+        display: flex;
+        padding: 20px 60px 50px 60px;
+        gap: 50px;
+        flex: 1;
+        z-index: 10;
+      }
+
+      /* Left Column: Strategy Core & Personas */
+      .strategy-col {
+        flex: 0 0 380px;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      .strategy-card {
+        background-color: #1e293b; /* Slate 800 */
+        border-radius: 20px;
+        padding: 30px;
+        color: white;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+      }
+
+      .focus-box {
+        background-color: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 20px;
+        padding: 24px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .persona-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 16px;
+        padding: 12px;
+        background-color: #f1f5f9;
+        border-radius: 12px;
+        transition: transform 0.2s;
+      }
+      .persona-item:hover {
+        background-color: #e2e8f0;
+        transform: translateX(5px);
+      }
+      .persona-icon {
+        width: 40px;
+        height: 40px;
+        background-color: white;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #3b82f6;
+        font-size: 1.1rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      }
+
+      /* Right Column: The Checklist Flow */
+      .checklist-col {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+      }
+
+      /* Vertical Line */
+      .flow-line {
+        position: absolute;
+        left: 24px;
+        top: 20px;
+        bottom: 40px;
+        width: 2px;
+        background-color: #cbd5e1;
+        z-index: 0;
+      }
+
+      .step-item {
+        display: flex;
+        gap: 24px;
+        margin-bottom: 20px;
+        position: relative;
+        z-index: 10;
+      }
+      .step-item:last-child {
+        margin-bottom: 0;
+      }
+
+      .step-marker {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: white;
+        border: 2px solid #e2e8f0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-family: "Montserrat", sans-serif;
+        color: #94a3b8;
+        flex-shrink: 0;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s;
+      }
+
+      .step-content {
+        flex: 1;
+        background-color: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 16px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+        transition: all 0.3s;
+      }
+
+      .step-text h4 {
+        font-family: "Montserrat", sans-serif;
+        font-size: 1rem;
+        font-weight: 700;
+        color: #334155;
+        margin-bottom: 4px;
+      }
+      .step-text p {
+        font-size: 0.85rem;
+        color: #64748b;
+        margin: 0;
+      }
+
+      .step-icon {
+        font-size: 1.2rem;
+        color: #cbd5e1;
+      }
+
+      /* Active/Highlight States for Steps */
+      .step-item:hover .step-marker {
+        border-color: #3b82f6;
+        color: #3b82f6;
+        transform: scale(1.1);
+      }
+      .step-item:hover .step-content {
+        border-color: #bfdbfe;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+      }
+      .step-item:hover .step-icon {
+        color: #3b82f6;
+      }
+
+      /* Specific Colors for Steps */
+      .highlight-blue {
+        border-color: #3b82f6;
+        color: #3b82f6;
+      }
+      .highlight-teal {
+        border-color: #0d9488;
+        color: #0d9488;
+      }
+      .highlight-indigo {
+        border-color: #6366f1;
+        color: #6366f1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slide-container">
+      <div class="bg-pattern"></div>
+      <!-- Header -->
+      <div class="header relative">
+        <div class="section-tag">
+          <i class="fa-solid fa-chess-knight"></i>
+          <span>Expansion Plan</span>
+        </div>
+        <h1 class="main-title">Go-To-Market Strategy</h1>
+        <p class="subtitle">
+          A focused city-by-city playbook to build network density and
+          demonstrate value.
+        </p>
+      </div>
+      <!-- Main Content -->
+      <div class="content-grid">
+        <!-- Left Column -->
+        <div class="strategy-col">
+          <!-- Strategy Summary Card -->
+          <div class="strategy-card">
+            <div class="flex items-center gap-3 mb-4">
+              <div
+                class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold"
+              >
+                <i class="fa-solid fa-location-crosshairs"></i>
+              </div>
+              <h3 class="font-montserrat font-bold text-xl">
+                The "City Zero" Approach
+              </h3>
+            </div>
+            <p class="text-slate-300 text-sm leading-relaxed mb-4">
+              We don't launch nationwide at once. We saturate one ecosystem to
+              create immediate network effects, then replicate.
+            </p>
+            <div class="mt-2 pt-4 border-t border-slate-700">
+              <p
+                class="text-xs text-blue-400 font-bold uppercase tracking-wider mb-1"
+              >
+                Goal
+              </p>
+              <p class="text-lg font-bold">Dominate 1 Metro in 6 Months</p>
+            </div>
+          </div>
+          <!-- Target Audience Box -->
+          <div class="focus-box">
+            <h3 class="font-montserrat font-bold text-slate-800 text-lg mb-4">
+              Target Personas
+            </h3>
+            <!-- Persona 1 -->
+            <div class="persona-item">
+              <div class="persona-icon">
+                <i class="fa-solid fa-user-tie"></i>
+              </div>
+              <div>
+                <p class="font-bold text-slate-700 text-sm">
+                  Hospital Administrators
+                </p>
+                <p class="text-xs text-slate-500">
+                  Focus: Efficiency &amp; Revenue
+                </p>
+              </div>
+            </div>
+            <!-- Persona 2 -->
+            <div class="persona-item">
+              <div class="persona-icon">
+                <i class="fa-solid fa-laptop-code"></i>
+              </div>
+              <div>
+                <p class="font-bold text-slate-700 text-sm">
+                  Healthcare IT Depts
+                </p>
+                <p class="text-xs text-slate-500">
+                  Focus: Integration &amp; Security
+                </p>
+              </div>
+            </div>
+            <!-- Persona 3 -->
+            <div class="persona-item">
+              <div class="persona-icon">
+                <i class="fa-solid fa-building-flag"></i>
+              </div>
+              <div>
+                <p class="font-bold text-slate-700 text-sm">
+                  State Authorities
+                </p>
+                <p class="text-xs text-slate-500">Focus: Public Health Data</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Right Column: The Checklist -->
+        <div class="checklist-col">
+          <div class="flow-line"></div>
+          <!-- Step 1 -->
+          <div class="step-item">
+            <div class="step-marker highlight-blue">1</div>
+            <div class="step-content">
+              <div class="step-text">
+                <h4>Select "City Zero"</h4>
+                <p>Identify a metro with high hospital density.</p>
+              </div>
+              <i
+                class="fa-solid fa-map-location-dot step-icon text-blue-500"
+              ></i>
+            </div>
+          </div>
+          <!-- Step 2 -->
+          <div class="step-item">
+            <div class="step-marker highlight-blue">2</div>
+            <div class="step-content">
+              <div class="step-text">
+                <h4>Secure Anchor Partners</h4>
+                <p>Partner with 3 major multi-specialty hospitals.</p>
+              </div>
+              <i class="fa-solid fa-handshake step-icon text-blue-500"></i>
+            </div>
+          </div>
+          <!-- Step 3 -->
+          <div class="step-item">
+            <div class="step-marker highlight-blue">3</div>
+            <div class="step-content">
+              <div class="step-text">
+                <h4>Onboard Supply Side</h4>
+                <p>Connect local blood banks &amp; NGOs to the grid.</p>
+              </div>
+              <i class="fa-solid fa-boxes-stacked step-icon text-blue-500"></i>
+            </div>
+          </div>
+          <!-- Step 4 -->
+          <div class="step-item">
+            <div class="step-marker highlight-teal">4</div>
+            <div class="step-content">
+              <div class="step-text">
+                <h4>Launch Pilot Program</h4>
+                <p>3-month live run to optimize workflows.</p>
+              </div>
+              <i class="fa-solid fa-rocket step-icon text-teal-500"></i>
+            </div>
+          </div>
+          <!-- Step 5 -->
+          <div class="step-item">
+            <div class="step-marker highlight-teal">5</div>
+            <div class="step-content">
+              <div class="step-text">
+                <h4>Capture Case Studies</h4>
+                <p>Document "Time Saved" &amp; "Lives Impacted".</p>
+              </div>
+              <i class="fa-solid fa-file-contract step-icon text-teal-500"></i>
+            </div>
+          </div>
+          <!-- Step 6 -->
+          <div class="step-item">
+            <div class="step-marker highlight-indigo">6</div>
+            <div class="step-content">
+              <div class="step-text">
+                <h4>Expand City-by-City</h4>
+                <p>Leverage case studies to enter new metros.</p>
+              </div>
+              <i class="fa-solid fa-arrows-spin step-icon text-indigo-500"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

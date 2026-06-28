@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>How It Works - VitalGrid</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Inter", sans-serif;
+        background-color: #f8fafc;
+        overflow: hidden;
+      }
+      .slide-container {
+        width: 100%;
+        height: 720px;
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        position: relative;
+      }
+      /* Background Decorations */
+      .bg-pattern {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+        background-size: 40px 40px;
+        opacity: 0.3;
+        z-index: 0;
+      }
+
+      .header {
+        padding: 50px 60px 20px 60px;
+        position: relative;
+        z-index: 10;
+      }
+      .section-tag {
+        font-size: 0.85rem;
+        color: #2563eb; /* Blue 600 */
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 10px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background-color: #eff6ff;
+        padding: 6px 16px;
+        border-radius: 20px;
+        border: 1px solid #dbeafe;
+      }
+      .main-title {
+        font-family: "Montserrat", sans-serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #0f172a;
+        line-height: 1.1;
+      }
+
+      .workflow-container {
+        flex: 1;
+        padding: 40px 60px 60px 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        z-index: 10;
+      }
+
+      .step-card {
+        flex: 1;
+        background: white;
+        border-radius: 16px;
+        padding: 30px 20px;
+        position: relative;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        border: 1px solid #e2e8f0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin: 0 15px;
+        height: 380px;
+        transition: transform 0.3s ease;
+      }
+
+      .step-number {
+        position: absolute;
+        top: -20px;
+        background-color: #0f172a;
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+        font-size: 1.1rem;
+        border: 4px solid #ffffff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 20;
+      }
+
+      .icon-circle {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        margin-bottom: 25px;
+        margin-top: 15px;
+        position: relative;
+      }
+
+      .step-title {
+        font-family: "Montserrat", sans-serif;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 15px;
+      }
+
+      .step-desc {
+        font-size: 0.95rem;
+        color: #64748b;
+        line-height: 1.6;
+      }
+
+      /* Connector Arrows */
+      .connector {
+        position: absolute;
+        top: 50%;
+        right: -40px;
+        transform: translateY(-50%);
+        color: #cbd5e1;
+        font-size: 1.5rem;
+        z-index: 5;
+      }
+
+      /* Step Specific Styles */
+      /* Step 1 */
+      .step-1 .icon-circle {
+        background-color: #e0f2fe;
+        color: #0284c7;
+      }
+      .step-1 {
+        border-top: 4px solid #0284c7;
+      }
+
+      /* Step 2 */
+      .step-2 .icon-circle {
+        background-color: #e0e7ff;
+        color: #4f46e5;
+      }
+      .step-2 {
+        border-top: 4px solid #4f46e5;
+      }
+
+      /* Step 3 */
+      .step-3 .icon-circle {
+        background-color: #fee2e2;
+        color: #dc2626;
+      }
+      .step-3 {
+        border-top: 4px solid #dc2626;
+      }
+
+      /* Step 4 */
+      .step-4 .icon-circle {
+        background-color: #dcfce7;
+        color: #16a34a;
+      }
+      .step-4 {
+        border-top: 4px solid #16a34a;
+      }
+
+      /* Pulse Ring for Alert Step */
+      .pulse-ring {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: 2px solid #ef4444;
+        opacity: 0.5;
+        transform: scale(1.2);
+      }
+
+      .arrow-path {
+        position: absolute;
+        top: 130px; /* Aligns with icon center approximately */
+        left: 100px;
+        right: 100px;
+        height: 2px;
+        border-top: 2px dashed #cbd5e1;
+        z-index: 0;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slide-container">
+      <!-- Background Pattern -->
+      <!-- <div class="bg-pattern"></div> -->
+      <!-- Pattern removed to avoid gradient issues if any, simple bg color is safer -->
+      <!-- Header -->
+      <div class="header">
+        <div class="section-tag">
+          <i class="fa-solid fa-gears"></i>
+          <span>Workflow</span>
+        </div>
+        <h1 class="main-title">How RaktaBridge Works</h1>
+        <p class="text-slate-500 mt-2 text-lg">
+          From inventory update to life-saving connection in 4 simple steps.
+        </p>
+      </div>
+      <!-- Workflow Diagram -->
+      <div class="workflow-container">
+        <!-- Dashed Line Connector Behind -->
+        <div class="arrow-path"></div>
+        <!-- Step 1 -->
+        <div class="step-card step-1">
+          <div class="step-number">1</div>
+          <div class="icon-circle">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+          </div>
+          <h3 class="step-title">Live Update</h3>
+          <p class="step-desc">
+            Blood banks and hospitals update inventory levels instantly via
+            dashboard or API integration.
+          </p>
+          <div class="mt-auto pt-4 border-t border-slate-100 w-full">
+            <p class="text-xs font-bold text-blue-600 uppercase tracking-wide">
+              Input Source
+            </p>
+          </div>
+          <!-- Arrow to next -->
+          <div class="connector">
+            <i class="fa-solid fa-chevron-right"></i>
+          </div>
+        </div>
+        <!-- Step 2 -->
+        <div class="step-card step-2">
+          <div class="step-number">2</div>
+          <div class="icon-circle">
+            <i class="fa-solid fa-magnifying-glass-location"></i>
+          </div>
+          <h3 class="step-title">Instant Search</h3>
+          <p class="step-desc">
+            Doctors search for specific blood types/components. Results appear
+            in real-time with location data.
+          </p>
+          <div class="mt-auto pt-4 border-t border-slate-100 w-full">
+            <p
+              class="text-xs font-bold text-indigo-600 uppercase tracking-wide"
+            >
+              Discovery
+            </p>
+          </div>
+          <!-- Arrow to next -->
+          <div class="connector">
+            <i class="fa-solid fa-chevron-right"></i>
+          </div>
+        </div>
+        <!-- Step 3 -->
+        <div class="step-card step-3">
+          <div class="step-number">3</div>
+          <div class="icon-circle">
+            <div class="pulse-ring"></div>
+            <i class="fa-solid fa-tower-broadcast"></i>
+          </div>
+          <h3 class="step-title">Emergency Alert</h3>
+          <p class="step-desc">
+            If stock is unavailable, an SOS broadcast is sent to all nearby
+            facilities and network nodes.
+          </p>
+          <div class="mt-auto pt-4 border-t border-slate-100 w-full">
+            <p class="text-xs font-bold text-red-600 uppercase tracking-wide">
+              Coordination
+            </p>
+          </div>
+          <!-- Arrow to next -->
+          <div class="connector">
+            <i class="fa-solid fa-chevron-right"></i>
+          </div>
+        </div>
+        <!-- Step 4 -->
+        <div class="step-card step-4">
+          <div class="step-number">4</div>
+          <div class="icon-circle">
+            <i class="fa-solid fa-mobile-screen-button"></i>
+          </div>
+          <h3 class="step-title">Donor Action</h3>
+          <p class="step-desc">
+            Registered donors receive targeted notifications based on location
+            and blood type compatibility.
+          </p>
+          <div class="mt-auto pt-4 border-t border-slate-100 w-full">
+            <p class="text-xs font-bold text-green-600 uppercase tracking-wide">
+              Resolution
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- Legend/Footer -->
+      <div
+        class="absolute bottom-0 w-full bg-slate-50 py-4 px-16 border-t border-slate-200 flex justify-between items-center text-sm text-slate-500"
+      >
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-circle-info text-blue-400"></i>
+          <p>
+            Average cycle time reduced from 45 mins to
+            <span class="font-bold text-slate-800">5 mins</span>
+          </p>
+        </div>
+        <div class="flex items-center gap-6">
+          <div class="flex items-center gap-2">
+            <div class="w-2 h-2 rounded-full bg-blue-500"></div>
+            <p>Hospital</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="w-2 h-2 rounded-full bg-red-500"></div>
+            <p>Network</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="w-2 h-2 rounded-full bg-green-500"></div>
+            <p>Public</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
