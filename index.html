@@ -14,18 +14,19 @@
 
       body {
         font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-        /* background: #000; */
         color: #fff;
         height: 100vh;
         display: flex;
         flex-direction: column;
         overflow: hidden;
+        background: #111;
       }
 
       /* Slide Container */
       #slide-container {
         flex: 1;
         position: relative;
+        z-index: 1;
       }
 
       /* Iframe */
@@ -34,20 +35,27 @@
         height: 100%;
         border: none;
         background: #111;
+        transition: opacity 0.3s ease;
       }
 
-      /* Controls - Top Right */
+      /* Controls - Top Right Fixes */
       #controls {
         position: fixed;
-        top: 10px;
+        top: 15px;
         right: 20px;
-
         width: 90%;
-        max-width: 240px;
+        max-width: 260px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 10px 20px;
+        padding: 10px 16px;
+        z-index: 100; /* Forces controls above iframe contents */
+        background: rgba(0, 0, 0, 0.65); /* Keeps navigation readable on bright slides */
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
       }
 
       /* Buttons */
@@ -55,71 +63,44 @@
         background: linear-gradient(135deg, #4f46e5, #7c3aed);
         border: none;
         color: white;
-        padding: 10px 18px;
-        border-radius: 12px;
+        padding: 8px 16px;
+        border-radius: 10px;
         cursor: pointer;
         font-size: 15px;
-        font-weight: 500;
+        font-weight: bold;
         transition: 0.2s ease;
       }
 
       button:hover {
         transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(79, 70, 229, 0.5);
+        box-shadow: 0 6px 15px rgba(79, 70, 229, 0.4);
       }
 
       button:disabled {
-        opacity: 0.4;
+        opacity: 0.3;
         cursor: not-allowed;
         transform: none;
         box-shadow: none;
       }
 
-      /* Progress */
-      #progress {
-        flex: 1;
-        height: 6px;
-        background: rgba(255, 255, 255, 0.1);
-        margin: 0 20px;
-        border-radius: 10px;
-        overflow: hidden;
-      }
-
-      #progress-bar {
-        height: 100%;
-        width: 0%;
-        background: linear-gradient(90deg, #4f46e5, #22d3ee);
-        transition: width 0.3s ease;
-      }
-
       /* Slide info */
       #slide-info {
-        font-size: 12px;
-        opacity: 0.7;
-        color: #111;
-      }
-
-      #slide-frame {
-        transition: opacity 0.3s ease;
+        font-size: 13px;
+        font-weight: 600;
+        color: #ffffff; /* Explicitly white text for crisp clarity */
+        opacity: 0.95;
       }
     </style>
   </head>
 
   <body>
     <div id="slide-container">
-      <!-- <iframe id="slide-frame" src="sl1.html"></iframe> -->
       <iframe id="slide-frame" src="/sl1.html"></iframe>
     </div>
 
     <div id="controls">
       <button id="prev">←</button>
-
-      <!-- <div id="progress">
-            <div id="progress-bar"></div>
-        </div> -->
-
       <span id="slide-info">Slide 1 of 14</span>
-
       <button id="next">→</button>
     </div>
 
